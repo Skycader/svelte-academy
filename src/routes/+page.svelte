@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from "svelte";
     import Person from "../components/person.svelte";
    let counter = 0;
     let message = ''
@@ -34,6 +35,10 @@ const ngModel = (event: any) =>  {
     name: 'Linus',
     age: 41
  }]
+
+ onMount(()=>{
+    console.log("MOUNTED")
+ })
 </script>
 
 <style lang="scss">
