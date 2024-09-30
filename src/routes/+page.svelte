@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Person from "../components/person.svelte";
    let counter = 0;
     let message = ''
  $: doubled = counter*2;
@@ -17,6 +18,19 @@ const ngModel = (event: any) =>  {
  }
 
  let textarea = ''
+
+ let sex = ''
+
+ let select = 'Option 1'
+
+ let people = [{
+    name: 'Alex',
+    age: 23
+ },
+ {
+    name: 'Linus',
+    age: 41
+ }]
 </script>
 
 <style lang="scss">
@@ -33,7 +47,7 @@ const ngModel = (event: any) =>  {
 
 <pre>{message}</pre>
 <h1 class={counterClass}>Counter:{counter} *2 => {doubled}</h1>
-<button on:click={()=>counter++}> +1 </button>
+<button class:red={counter%2} on:click={()=>counter++}> +1 </button>
 <button on:click={()=>counter--}> -1 </button>
 
 <hr/>
@@ -51,3 +65,33 @@ const ngModel = (event: any) =>  {
 
 <textarea bind:value={textarea}/>
 <div style="white-space: pre-wrap">{textarea}</div>
+<hr/>
+
+<pre>You have selected: {select}</pre>
+<select bind:value={select}>
+    <option value="Option 1">Option 1</option>
+    <option value="Option 2">Option 2</option>
+    <option value="Option 3">Option 3</option>
+</select>
+
+<hr/>
+
+<pre>Your sex is {sex}</pre>
+<input type="radio" value="male" bind:group={sex}/>Male
+<input type="radio" value="female" bind:group={sex}/>Female
+
+{#if sex === 'male'}
+<h1>Congrats, you're a male!</h1>
+{:else if sex === 'female'}
+<h3>Congrats, female</h3>
+{:else}
+<pre>Choose your sex</pre>
+{/if}
+
+<hr/>
+
+<Person name={'Daniel'}/>
+
+{#each people as person, i}
+<b>{i}</b><Person name={person.name} person={person}/>
+{/each}
