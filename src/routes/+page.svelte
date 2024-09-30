@@ -94,4 +94,6 @@ const ngModel = (event: any) =>  {
 
 {#each people as person, i}
 <b>{i}</b><Person name={person.name} person={person}/>
+{:else}
+<pre>Nothing</pre>
 {/each}
