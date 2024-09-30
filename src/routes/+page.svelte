@@ -24,10 +24,13 @@ const ngModel = (event: any) =>  {
  let select = 'Option 1'
 
  let people = [{
+    id: 1,
     name: 'Alex',
     age: 23
  },
+
  {
+    id: 2,
     name: 'Linus',
     age: 41
  }]
@@ -92,7 +95,7 @@ const ngModel = (event: any) =>  {
 
 <Person name={'Daniel'}/>
 
-{#each people as person, i}
+{#each people as person, i (person.id)}
 <b>{i}</b><Person name={person.name} person={person}/>
 {:else}
 <pre>Nothing</pre>
